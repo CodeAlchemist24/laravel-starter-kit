@@ -69,35 +69,38 @@ it('captures screenshot of edit password page', function (): void {
         ->screenshot(true, '08-my-password');
 });
 
-it('captures screenshot of epicentrum roles page', function (): void {
-    Artisan::call('laravolt:admin admin admin@laravolt.dev secret');
+describe('Epicentrum screenshots', function (): void {
+    beforeEach(function (): void {
+        $email = config('admin.email');
+        $password = config('admin.password') ?? 'secret';
 
-    $this->actingAs(User::query()->where('email', 'admin@laravolt.dev')->firstOrFail());
+        Artisan::call('laravolt:admin', [
+            'name' => 'admin',
+            'email' => $email,
+            'password' => $password,
+        ]);
 
-    $page = visit('/epicentrum/roles');
+        $this->actingAs(User::query()->where('email', $email)->firstOrFail());
+    });
 
-    $page->assertSee('Roles')
-        ->screenshot(true, '09-epicentrum-roles');
-});
+    it('captures screenshot of epicentrum roles page', function (): void {
+        $page = visit('/epicentrum/roles');
 
-it('captures screenshot of epicentrum create role page', function (): void {
-    Artisan::call('laravolt:admin admin admin@laravolt.dev secret');
+        $page->assertSee('Roles')
+            ->screenshot(true, '09-epicentrum-roles');
+    });
 
-    $this->actingAs(User::query()->where('email', 'admin@laravolt.dev')->firstOrFail());
+    it('captures screenshot of epicentrum create role page', function (): void {
+        $page = visit('/epicentrum/roles/create');
 
-    $page = visit('/epicentrum/roles/create');
+        $page->assertNoJavaScriptErrors()
+            ->screenshot(true, '10-epicentrum-create-role');
+    });
 
-    $page->assertNoJavaScriptErrors()
-        ->screenshot(true, '10-epicentrum-create-role');
-});
+    it('captures screenshot of epicentrum permissions page', function (): void {
+        $page = visit('/epicentrum/permissions');
 
-it('captures screenshot of epicentrum permissions page', function (): void {
-    Artisan::call('laravolt:admin admin admin@laravolt.dev secret');
-
-    $this->actingAs(User::query()->where('email', 'admin@laravolt.dev')->firstOrFail());
-
-    $page = visit('/epicentrum/permissions');
-
-    $page->assertSee('Permissions')
-        ->screenshot(true, '11-epicentrum-permissions');
+        $page->assertSee('Permissions')
+            ->screenshot(true, '11-epicentrum-permissions');
+    });
 });

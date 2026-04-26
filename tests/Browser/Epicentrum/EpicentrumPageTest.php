@@ -6,9 +6,16 @@ use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 
 beforeEach(function (): void {
-    Artisan::call('laravolt:admin admin admin@laravolt.dev secret');
+    $email = config('admin.email');
+    $password = config('admin.password') ?? 'secret';
 
-    $this->adminUser = User::query()->where('email', 'admin@laravolt.dev')->firstOrFail();
+    Artisan::call('laravolt:admin', [
+        'name' => 'admin',
+        'email' => $email,
+        'password' => $password,
+    ]);
+
+    $this->adminUser = User::query()->where('email', $email)->firstOrFail();
 });
 
 it('can display roles page', function (): void {
