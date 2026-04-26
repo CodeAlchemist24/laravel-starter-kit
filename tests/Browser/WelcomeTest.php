@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-it('has login page', function (): void {
-    $page = visit('/auth/login');
+it('has welcome page', function (): void {
+    $page = visit('/');
 
-    $page->assertSee('Login')
-        ->assertScreenshotMatches();
+    $page->assertSee("Let's get started");
 });

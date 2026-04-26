@@ -1,15 +1,23 @@
-<p>
-    <a href="https://github.com/laravolt/laravel-starter-kit/actions"><img src="https://github.com/laravolt/laravel-starter-kit/actions/workflows/tests.yml/badge.svg" alt="Build Status"></a>
-    <a href="https://packagist.org/packages/laravolt/laravel-starter-kit"><img src="https://img.shields.io/packagist/dt/laravolt/laravel-starter-kit" alt="Total Downloads"></a>
-    <a href="https://packagist.org/packages/laravolt/laravel-starter-kit"><img src="https://img.shields.io/packagist/v/laravolt/laravel-starter-kit" alt="Latest Stable Version"></a>
-    <a href="https://packagist.org/packages/laravolt/laravel-starter-kit"><img src="https://img.shields.io/packagist/l/laravolt/laravel-starter-kit" alt="License"></a>
+- Blade (this project) version: **[github.com/nunomaduro/laravel-starter-kit](https://github.com/nunomaduro/laravel-starter-kit)**
+- Inertia & React version: **[github.com/nunomaduro/laravel-starter-kit-inertia-react](https://github.com/nunomaduro/laravel-starter-kit-inertia-react)**
+- Inertia & Vue version: **[github.com/nunomaduro/laravel-starter-kit-inertia-vue](https://github.com/nunomaduro/laravel-starter-kit-inertia-vue)**
+
+
+<p align="center">
+    <a href="https://youtu.be/VhzP0XWGTC4" target="_blank">
+        <img src="/art/banner.png" alt="Overview Laravel Starter Kit" style="width:70%;">
+    </a>
 </p>
 
-# Laravel Starter Kit
+<p>
+    <a href="https://github.com/nunomaduro/laravel-starter-kit/actions"><img src="https://github.com/nunomaduro/laravel-starter-kit/actions/workflows/tests.yml/badge.svg" alt="Build Status"></a>
+    <a href="https://packagist.org/packages/nunomaduro/laravel-starter-kit"><img src="https://img.shields.io/packagist/dt/nunomaduro/laravel-starter-kit" alt="Total Downloads"></a>
+    <a href="https://packagist.org/packages/nunomaduro/laravel-starter-kit"><img src="https://img.shields.io/packagist/v/nunomaduro/laravel-starter-kit" alt="Latest Stable Version"></a>
+    <a href="https://packagist.org/packages/nunomaduro/laravel-starter-kit"><img src="https://img.shields.io/packagist/l/nunomaduro/laravel-starter-kit" alt="License"></a>
+    <a href="https://youtube.com/@nunomaduro?sub_confirmation=1"><img alt="YouTube Channel Subscribers" src="https://img.shields.io/youtube/channel/subscribers/UCO_hYZF2gb_CyG5sA7ArlGg?style=flat&label=youtube&color=brightgreen"></a>
+</p>
 
-Official Laravel starter kit with strict type-safety and code quality tools for [Laravolt](https://github.com/laravolt/laravolt) in Agentic era.
-
-> **Note**: This starter kit comes with Laravolt Platform (7.x) pre-installed. The setup process automatically configures all necessary migrations and assets.
+**Laravel Starter Kit** is an ultra-strict, type-safe [Laravel](https://laravel.com) skeleton engineered for developers who refuse to compromise on code quality. This opinionated starter kit enforces rigorous development standards through meticulous tooling configuration and architectural decisions that prioritize type safety, immutability, and fail-fast principles.
 
 ## Why This Starter Kit?
 
@@ -20,18 +28,19 @@ Modern PHP has evolved into a mature, type-safe language, yet many Laravel proje
 - **Immutable-First Architecture**: Data structures favor immutability to prevent unexpected mutations
 - **Fail-Fast Philosophy**: Errors are caught at compile-time, not runtime
 - **Automated Code Quality**: Pre-configured tools ensure consistent, pristine code across your entire team
+- **Bun-Powered**: Leveraging Bun for blazing-fast dependency management...
 - **Just Better Laravel Defaults**: Thanks to **[Essentials](https://github.com/nunomaduro/essentials)** / strict models, auto eager loading, immutable dates, and more...
 
 This isn't just another Laravel boilerplate—it's a statement that PHP applications can and should be built with the same rigor as strongly-typed languages like Rust or TypeScript.
 
 ## Getting Started
 
-> **Requires [PHP 8.4+](https://php.net/releases/)**.
+> **Requires [PHP 8.4+](https://php.net/releases/)**, [Bun](https://bun.sh) and a code coverage driver like [xdebug](https://xdebug.org/docs/install)**.
 
 Create your type-safe Laravel application using [Composer](https://getcomposer.org):
 
 ```bash
-composer create-project laravolt/laravel-starter-kit --prefer-dist example-app
+composer create-project nunomaduro/laravel-starter-kit --prefer-dist example-app
 ```
 
 ### Initial Setup
@@ -47,6 +56,14 @@ composer setup
 # Start the development server
 composer dev
 ```
+
+### GitHub Codespaces
+
+This repository includes a preconfigured Codespaces devcontainer at `.devcontainer/devcontainer.json`.
+
+1. Open the repository in a new Codespace.
+2. Wait for the post-create setup to install Composer and Bun dependencies.
+3. Run `composer dev` to start the local development services.
 
 ### Optional: Browser Testing Setup
 
@@ -70,25 +87,21 @@ You should see 100% test coverage and all quality checks passing.
 ## Available Tooling
 
 ### Development
-
-- `composer dev` - Starts Laravel server, queue worker, log monitoring, and Vite dev server concurrently
+- `composer dev` - Starts Laravel server, queue worker, log monitoring, and Vite+ dev server concurrently
 
 ### Code Quality
-
-- `composer lint` - Runs Rector (refactoring), Pint (PHP formatting), and Prettier (JS/TS formatting)
+- `composer lint` - Runs Rector (refactoring), Pint (PHP formatting), and Oxfmt (JS/TS formatting)
 - `composer test:lint` - Dry-run mode for CI/CD pipelines
 
 ### Testing
-
 - `composer test:type-coverage` - Ensures 100% type coverage with Pest
 - `composer test:types` - Runs PHPStan at level 9 (maximum strictness)
 - `composer test:unit` - Runs Pest tests with 100% code coverage requirement
 - `composer test` - Runs the complete test suite (type coverage, unit tests, linting, static analysis)
 
 ### Maintenance
+- `composer update:requirements` - Updates all PHP and Bun dependencies to latest versions
 
-- `composer update:requirements` - Updates all PHP and NPM dependencies to latest versions
+## License
 
----
-
-Based on the original work by **[Nuno Maduro](https://x.com/enunomaduro)**.
+**Laravel Starter Kit** was created by **[Nuno Maduro](https://x.com/enunomaduro)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
