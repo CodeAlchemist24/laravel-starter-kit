@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Cache;
 use Laravolt\Epicentrum\Http\Requests\My\Profile\Update;
 use Laravolt\Support\Contracts\TimezoneRepository;
 
@@ -16,7 +17,7 @@ final class ProfileController extends Controller
     public function edit(TimezoneRepository $timezone): View
     {
         $user = auth()->user();
-        $timezones = $timezone->all();
+        $timezones = Cache::flexible('timezones', [3600, 7200], fn () => $timezone->all());
 
         return view('my.profile.edit', ['user' => $user, 'timezones' => $timezones]);
     }
