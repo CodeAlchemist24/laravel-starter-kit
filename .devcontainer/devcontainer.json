@@ -1,0 +1,25 @@
+{
+    "name": "Laravel Starter Kit",
+    "image": "mcr.microsoft.com/devcontainers/php:1-8.4-bookworm",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "22"
+        },
+        "ghcr.io/devcontainers/features/bun:1": {},
+        "ghcr.io/devcontainers/features/composer:1": {}
+    },
+    "forwardPorts": [
+        8000,
+        5173
+    ],
+    "postCreateCommand": "cp -n .env.example .env || true && composer install --no-interaction --prefer-dist --optimize-autoloader --no-progress && php artisan key:generate --no-interaction && bun install --frozen-lockfile",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "xdebug.php-debug",
+                "esbenp.prettier-vscode"
+            ]
+        }
+    }
+}

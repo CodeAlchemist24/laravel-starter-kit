@@ -57,6 +57,14 @@ composer setup
 composer dev
 ```
 
+### GitHub Codespaces
+
+This repository includes a preconfigured Codespaces devcontainer at `.devcontainer/devcontainer.json`.
+
+1. Open the repository in a new Codespace.
+2. Wait for the post-create setup to install Composer and Bun dependencies.
+3. Run `composer dev` to start the local development services.
+
 ### Optional: Browser Testing Setup
 
 If you plan to use Pest's browser testing capabilities:
